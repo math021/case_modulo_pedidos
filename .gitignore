@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Angular build output
+dist/
+out-tsc/
+
+# Compiled Angular files
+*.js
+*.js.map
+*.ngfactory.ts
+*.ngsummary.json
+
+# IDEs
+.idea/
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+
+# Logs
+logs/
+*.log
