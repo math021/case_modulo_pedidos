@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PedidoService } from '../../../core/services/pedido.service';
-import { ProdutoService } from '../../../core/services/produto.service';
+import { PedidoService } from '../../../core/services/pedido/pedido.service';
+import { ProdutoService } from '../../../core/services/produto/produto.service';
 import { Pedido, Produto } from '../../../core/models/pedido.model';
 
 @Component({

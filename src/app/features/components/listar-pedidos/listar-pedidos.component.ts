@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidoService } from '../../../core/services/pedido.service';
+import { PedidoService } from '../../../core/services/pedido/pedido.service';
 import { Pedido } from '../../../core/models/pedido.model';
 
 @Component({

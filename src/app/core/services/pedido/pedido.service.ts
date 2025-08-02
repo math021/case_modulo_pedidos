@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Pedido } from '../models/pedido.model';
+import { Pedido } from '../../models/pedido.model';
 
 @Injectable({ providedIn: 'root' })
 export class PedidoService {
