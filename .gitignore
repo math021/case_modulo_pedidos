@@ -6,6 +6,7 @@ npm-debug.log*
 # Angular build output
 dist/
 out-tsc/
+.angular/
 
 # Compiled Angular files
 *.js
