@@ -1,0 +1,35 @@
+<form [formGroup]="pedidoForm" (ngSubmit)="efetuarPedido()">
+  <div>
+    <label for="produtoId">Produto</label>
+    <select id="produtoId" formControlName="produtoId">
+      <option value="" disabled selected>Selecione um produto</option>
+      <option *ngFor="let produto of produtos" [value]="produto.id">
+        {{ produto.nome }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="estoqueDisponivel">
+    <small>Estoque disponível: {{ estoqueDisponivel }}</small>
+  </div>
+
+  <div>
+    <label for="descricao">Descrição</label>
+    <input id="descricao" type="text" formControlName="descricao" />
+  </div>
+
+  <div>
+    <label for="quantidade">Quantidade</label>
+    <input id="quantidade" type="number" formControlName="quantidade" [max]="estoqueDisponivel" />
+  </div>
+
+  <div>
+    <label for="precoUnitario">Preço Unitário</label>
+    <input id="precoUnitario" type="number" formControlName="precoUnitario" [disabled]="true" />
+  </div>
+
+  <button type="submit" [disabled]="pedidoForm.invalid">Efetuar Pedido</button>
+
+  <div class="mensagem" *ngIf="mensagem">{{ mensagem }}</div>
+  <div class="erro" *ngIf="erro">{{ erro }}</div>
+</form>

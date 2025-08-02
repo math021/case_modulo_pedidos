@@ -7,7 +7,7 @@ import { Pedido } from '../models/pedido.model';
 export class PedidoService {
   private baseUrl = 'http://localhost:3000/pedidos';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   listar(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(`${this.baseUrl}?status=ativo`);

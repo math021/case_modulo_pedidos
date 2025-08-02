@@ -22,14 +22,21 @@
     "pedidos": [
       {
         "id": 1,
-        "descricao": "Pedido de Notebook para o pessoal de TI",
+        "descricao": "Pedido de notebook para a área de TI",
         "quantidade": 2,
         "precoUnitario": 3500.00,
         "status": "ativo"
       },
       {
         "id": 2,
-        "descricao": "Pedido de Mouse para novos funcionários",
+        "descricao": "Pedido de carregadores para a área de TI",
+        "quantidade": 5,
+        "precoUnitario": 150.00,
+        "status": "ativo"
+      },
+      {
+        "id": 3,
+        "descricao": "Pedido de mouses para a área de TI",
         "quantidade": 5,
         "precoUnitario": 150.00,
         "status": "cancelado"

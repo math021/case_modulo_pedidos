@@ -4,9 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
-import { ListarPedidosComponent } from './features/pedidos/components/listar-pedidos/listar-pedidos.component';
-import { EfetuarPedidoComponent } from './features/pedidos/components/efetuar-pedidos/efetuar-pedido.component';
 import { AppComponent } from './app.component';
+import { ListarPedidosComponent } from './features/components/listar-pedidos/listar-pedidos.component';
+import { EfetuarPedidoComponent } from './features/components/efetuar-pedidos/efetuar-pedido.component';
 
 @NgModule({
   declarations: [
@@ -22,4 +22,4 @@ import { AppComponent } from './app.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
