@@ -1,0 +1,108 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Notebook Lenovo",
+      "preco": 3500,
+      "estoque": 12
+    },
+    {
+      "id": 2,
+      "nome": "Carregador ",
+      "preco": 140,
+      "estoque": 31
+    },
+    {
+      "id": 3,
+      "nome": "Mouse Logitech",
+      "preco": 150,
+      "estoque": 65
+    },
+    {
+      "id": 4,
+      "nome": "Monitor Dell",
+      "preco": 1100,
+      "estoque": 40
+    }
+  ],
+  "pedidos": [
+    {
+      "id": 1,
+      "produto": {
+        "id": 1,
+        "nome": "Notebook Lenovo",
+        "preco": 3500,
+        "estoque": 10
+      },
+      "descricao": "Pedido de notebook para os Itubers de TI",
+      "quantidade": 2,
+      "precoUnitario": 3500,
+      "status": "ativo"
+    },
+    {
+      "id": 2,
+      "produto": {
+        "id": 2,
+        "nome": "Carregador ",
+        "preco": 140,
+        "estoque": 15
+      },
+      "descricao": "Pedido de carregadores os Itubers de TI",
+      "quantidade": 5,
+      "precoUnitario": 150,
+      "status": "ativo"
+    },
+    {
+      "id": 3,
+      "produto": {
+        "id": 3,
+        "nome": "Mouse Logitech",
+        "preco": 150,
+        "estoque": 50
+      },
+      "descricao": "Pedido de mouses para os Itubers de TI",
+      "quantidade": 5,
+      "precoUnitario": 150,
+      "status": "ativo"
+    },
+    {
+      "id": 4,
+      "produto": {
+        "id": 2,
+        "nome": "Carregador ",
+        "preco": 140,
+        "estoque": 25
+      },
+      "descricao": "Compra ",
+      "quantidade": 1,
+      "precoUnitario": 140,
+      "status": "cancelado"
+    },
+    {
+      "id": 5,
+      "produto": {
+        "id": 1,
+        "nome": "Notebook Lenovo",
+        "preco": 3500,
+        "estoque": 12
+      },
+      "descricao": "teste",
+      "quantidade": 12,
+      "precoUnitario": 3500,
+      "status": "cancelado"
+    },
+    {
+      "id": 6,
+      "produto": {
+        "id": 4,
+        "nome": "Monitor Dell",
+        "preco": 1100,
+        "estoque": 50
+      },
+      "descricao": "Compra de monitores para os Itubers de INR",
+      "quantidade": 10,
+      "precoUnitario": 1100,
+      "status": "ativo"
+    }
+  ]
+}

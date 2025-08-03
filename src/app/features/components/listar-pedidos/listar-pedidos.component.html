@@ -1,0 +1,32 @@
+<h2>Pedidos Ativos</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Produto</th>
+      <th>Descrição</th>
+      <th>Quantidade</th>
+      <th>Preço Unitário</th>
+      <th>Total</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pedido of pedidos">
+      <td>{{ pedido.id }}</td>
+      <td>{{ pedido.produto.nome }}</td>
+      <td>{{ pedido.descricao }}</td>
+      <td>{{ pedido.quantidade }}</td>
+      <td>R$ {{ pedido.precoUnitario | number:'1.2-2' }}</td>
+      <td>R$ {{ pedido.quantidade * pedido.precoUnitario | number:'1.2-2' }}</td>
+      <td>
+        <button (click)="cancelarPedido(pedido)">Cancelar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="mensagem" *ngIf="mensagem">
+  {{ mensagem }}
+</div>
