@@ -38,7 +38,7 @@ export class EfetuarPedidoComponent implements OnInit {
   }
 
   onValueChange(produtoId: number) {
-    this.produtoService.obterPorId(produtoId).subscribe(produto => {
+    this.produtoService.listarPorId(produtoId).subscribe(produto => {
       if (produto) {
         this.produtoSelecionado = produto;
 

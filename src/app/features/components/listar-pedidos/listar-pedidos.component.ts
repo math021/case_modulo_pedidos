@@ -30,7 +30,7 @@ export class ListarPedidosComponent implements OnInit {
   cancelarPedido(pedido: Pedido) {
     this.pedidoService.cancelar(pedido.id).subscribe(() => {
 
-      this.produtoService.obterPorId(pedido.produto.id).subscribe(produto => {
+      this.produtoService.listarPorId(pedido.produto.id).subscribe(produto => {
         this.produtoService.recalcularEstoque(produto.id, produto.estoque + pedido.quantidade).subscribe();
       });
 
