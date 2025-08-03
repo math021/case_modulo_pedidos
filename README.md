@@ -1,27 +1,122 @@
-# ModuloPedidos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
+# Módulo de Pedidos – Sistema de Vendas
 
-## Development server
+Este projeto é um módulo de **Pedidos** para um sistema de vendas, desenvolvido com Angular. Ele implementa as funcionalidades de:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Efetuar Pedido
+- Cancelar Pedido
+- Listar Pedidos
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisitos Atendidos
 
-## Build
+### Funcionais
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Não é possível pedir produtos inexistentes
+- Não é possível pedir quantidades maiores que o estoque
+- Pedidos são atômicos e concorrência segura
+- Pedido possui descrição, quantidade e preço unitário
+- Histórico de pedidos é mantido
+- Apenas pedidos ativos são listados
 
-## Running unit tests
+### Não Funcionais
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Persistência via JSON (simulado com `json-server`)
+- Boas práticas de API REST (verbo, status, estrutura)
+- Testes unitários implementados
+- Código seguindo princípios **SOLID**, **DDD** e **Clean Architecture**
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Como Rodar
 
-## Further help
+### Pré-requisitos
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Node.js 14+
+- Angular CLI
+- json-server
+
+### 1. Instalar dependências
+
+```powershell
+npm install
+```
+
+### 2. Iniciar backend simulado (json-server)
+
+```powershell
+npx json-server --watch db.json --port 3000
+```
+
+### 3. Rodar aplicação Angular
+
+```powershell
+npm start
+```
+
+Acesse em: [http://localhost:4200](http://localhost:4200)
+
+---
+
+## Rodar Testes
+
+### Executar testes unitários com Karma + Jasmine
+
+```powershell
+npm test
+```
+
+### Gerar relatório de cobertura
+
+```powershell
+ng test --code-coverage
+```
+
+Abra `coverage/index.html` no navegador.
+
+---
+
+## Estrutura do Projeto
+
+```
+src/
+  app/
+    core/
+      models/             # Interfaces de domínio
+      services/           # Serviços (API)
+    features/
+      components/
+        efetuar-pedidos/           # Componentes: listar-pedidos.html, listar-pedidos.ts, listar-pedidos.spec.ts e listar-pedidos.scss
+        listar-pedidos/            # Componentes: efetuar-pedido.html, efetuar-pedido.ts, efetuar-pedido.spec.ts e efetuar-pedido.scss
+```
+
+---
+
+## Testes Inclusos
+
+- EfetuarPedidoComponent
+  - Pedido válido
+  - Estoque excedido
+  - Formulário inválido
+
+- PedidoService
+  - Listar pedidos
+  - Efetuar pedido
+  - Cancelar pedido
+
+---
+
+## Boas Práticas Aplicadas
+
+- Angular CLI, Lazy Loading, Reactive Forms
+- Arquitetura em camadas (Core, Features)
+- Clean Code, separação por domínio
+- Testes com Jasmine e Karma
+- SCSS como pré-processador
+
+---
+
+## 🧾 Licença
+
+Uso educacional e demonstrativo.

@@ -3,12 +3,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { PedidoService } from './pedido.service';
 import { Pedido } from '../../models/pedido.model';
 
-describe('Forçar Karma a rodar', () => {
-  it('deve rodar esse teste de verificação', () => {
-    expect(true).toBeTrue();
-  });
-});
-
 describe('PedidoService', () => {
   let service: PedidoService;
   let httpMock: HttpTestingController;

@@ -25,7 +25,7 @@
 
   <div>
     <label for="precoUnitario">Preço Unitário</label>
-    <input id="precoUnitario" type="number" formControlName="precoUnitario" [disabled]="true" />
+    <input id="precoUnitario" type="number" formControlName="precoUnitario" readonly />
   </div>
 
   <button type="submit" [disabled]="pedidoForm.invalid">Efetuar Pedido</button>

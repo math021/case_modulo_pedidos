@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Pedido, Produto } from '../../../core/models/pedido.model';
 import { PedidoService } from '../../../core/services/pedido/pedido.service';
 import { ProdutoService } from '../../../core/services/produto/produto.service';
-import { Pedido, Produto } from '../../../core/models/pedido.model';
 
 @Component({
   selector: 'app-efetuar-pedido',
@@ -26,7 +26,7 @@ export class EfetuarPedidoComponent implements OnInit {
       produtoId: [null, Validators.required],
       descricao: ['', Validators.required],
       quantidade: [1, [Validators.required, Validators.min(1)]],
-      precoUnitario: [{ value: 0, disabled: true }]
+      precoUnitario: [0, [Validators.required, Validators.min(0.01)]]
     });
   }
 
@@ -38,12 +38,16 @@ export class EfetuarPedidoComponent implements OnInit {
       if (produto) {
         this.estoqueDisponivel = produto.estoque;
         this.precoUnitario = produto.preco;
+
         this.pedidoForm.patchValue({ precoUnitario: produto.preco });
+        //força a revalidação do campo
+        this.pedidoForm.get('precoUnitario')?.updateValueAndValidity();
       }
     });
   }
 
   efetuarPedido() {
+    console.log('Formulário enviado:', this.pedidoForm.valid);
     if (this.pedidoForm.valid) {
       const formValue = this.pedidoForm.getRawValue();
 
