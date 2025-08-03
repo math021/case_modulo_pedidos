@@ -115,8 +115,3 @@ src/
 - Testes com Jasmine e Karma
 - SCSS como pré-processador
 
----
-
-## 🧾 Licença
-
-Uso educacional e demonstrativo.
