@@ -10,7 +10,7 @@ describe('PedidoService', () => {
   const dummyPedidos: Pedido[] = [
     {
       id: 1,
-      produtoId: 1,
+      produto: { id: 1, nome: 'Produto Teste', preco: 100, estoque: 10 },
       descricao: 'Pedido teste',
       quantidade: 2,
       precoUnitario: 100,
@@ -49,6 +49,7 @@ describe('PedidoService', () => {
 
     const req = httpMock.expectOne('http://localhost:3000/pedidos');
     expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual(novoPedido);
     req.flush(novoPedido);
   });
 

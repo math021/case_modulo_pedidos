@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Produto } from '../../models/pedido.model';
+import { Produto } from '../../models/produto.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProdutoService {
@@ -11,6 +11,10 @@ export class ProdutoService {
 
   listar(): Observable<Produto[]> {
     return this.http.get<Produto[]>(this.baseUrl);
+  }
+
+  recalcularEstoque(produtoId: number, quantidadeRecalculada: number): Observable<Produto> {
+    return this.http.patch<Produto>(`${this.baseUrl}/${produtoId}`, { estoque: quantidadeRecalculada });
   }
 
   obterPorId(id: number): Observable<Produto> {

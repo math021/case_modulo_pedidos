@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListarPedidosComponent } from './features/components/listar-pedidos/listar-pedidos.component';
 import { EfetuarPedidoComponent } from './features/components/efetuar-pedidos/efetuar-pedido.component';
+import { ListarPedidosComponent } from './features/components/listar-pedidos/listar-pedidos.component';
 
 const routes: Routes = [
   { path: 'pedidos', component: ListarPedidosComponent },

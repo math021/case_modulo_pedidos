@@ -1,6 +1,6 @@
 <form [formGroup]="pedidoForm" (ngSubmit)="efetuarPedido()">
   <div>
-    <label for="produtoId">Produto</label>
+    <label for="produtoId">Produto: </label>
     <select id="produtoId" formControlName="produtoId">
       <option value="" disabled selected>Selecione um produto</option>
       <option *ngFor="let produto of produtos" [value]="produto.id">
@@ -9,22 +9,22 @@
     </select>
   </div>
 
-  <div *ngIf="estoqueDisponivel">
-    <small>Estoque disponível: {{ estoqueDisponivel }}</small>
+  <div *ngIf="produtoSelecionado.estoque >= 0">
+    <small>Estoque disponível: {{ produtoSelecionado.estoque }}</small>
   </div>
 
   <div>
-    <label for="descricao">Descrição</label>
+    <label for="descricao">Descrição: </label>
     <input id="descricao" type="text" formControlName="descricao" />
   </div>
 
   <div>
-    <label for="quantidade">Quantidade</label>
-    <input id="quantidade" type="number" formControlName="quantidade" [max]="estoqueDisponivel" />
+    <label for="quantidade">Quantidade: </label>
+    <input id="quantidade" type="number" formControlName="quantidade" [max]="produtoSelecionado.estoque" />
   </div>
 
   <div>
-    <label for="precoUnitario">Preço Unitário</label>
+    <label for="precoUnitario">Preço Unitário: </label>
     <input id="precoUnitario" type="number" formControlName="precoUnitario" readonly />
   </div>
 

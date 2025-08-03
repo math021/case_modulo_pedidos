@@ -22,9 +22,6 @@ out-tsc/
 .DS_Store
 Thumbs.db
 
-# Coverage reports
-coverage/
-
 # Logs
 logs/
 *.log

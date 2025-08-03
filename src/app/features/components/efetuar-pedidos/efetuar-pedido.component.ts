@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Pedido, Produto } from '../../../core/models/pedido.model';
+import { Produto } from 'src/app/core/models/produto.model';
+import { Pedido } from '../../../core/models/pedido.model';
 import { PedidoService } from '../../../core/services/pedido/pedido.service';
 import { ProdutoService } from '../../../core/services/produto/produto.service';
 
@@ -12,8 +13,7 @@ import { ProdutoService } from '../../../core/services/produto/produto.service';
 export class EfetuarPedidoComponent implements OnInit {
   pedidoForm: FormGroup;
   produtos: Produto[] = [];
-  estoqueDisponivel: number = 0;
-  precoUnitario: number = 0;
+  produtoSelecionado: Produto = {} as Produto;
   mensagem: string = '';
   erro: string = '';
 
@@ -32,12 +32,15 @@ export class EfetuarPedidoComponent implements OnInit {
 
   ngOnInit() {
     this.produtoService.listar().subscribe(produtos => this.produtos = produtos);
-
     this.pedidoForm.get('produtoId')?.valueChanges.subscribe((produtoId) => {
-      const produto = this.produtos.find(p => p.id === +produtoId);
+      if (produtoId) this.onValueChange(produtoId);
+    });
+  }
+
+  onValueChange(produtoId: number) {
+    this.produtoService.obterPorId(produtoId).subscribe(produto => {
       if (produto) {
-        this.estoqueDisponivel = produto.estoque;
-        this.precoUnitario = produto.preco;
+        this.produtoSelecionado = produto;
 
         this.pedidoForm.patchValue({ precoUnitario: produto.preco });
         //força a revalidação do campo
@@ -47,21 +50,26 @@ export class EfetuarPedidoComponent implements OnInit {
   }
 
   efetuarPedido() {
-    console.log('Formulário enviado:', this.pedidoForm.valid);
     if (this.pedidoForm.valid) {
-      const formValue = this.pedidoForm.getRawValue();
+      const rawForm = this.pedidoForm.getRawValue();
 
-      if (formValue.quantidade > this.estoqueDisponivel) {
+      if (rawForm.quantidade > this.produtoSelecionado.estoque) {
         this.erro = 'Quantidade solicitada excede o estoque disponível.';
+        return;
+      }
+
+      if (rawForm.precoUnitario !== this.produtoSelecionado.preco) {
+        this.pedidoForm.get('precoUnitario')?.setValue(this.produtoSelecionado.preco);
+        this.erro = 'Preço unitário não corresponde ao preço do produto selecionado.';
         return;
       }
 
       const pedido: Pedido = {
         id: 0,
-        produtoId: formValue.produtoId,
-        descricao: formValue.descricao,
-        quantidade: formValue.quantidade,
-        precoUnitario: formValue.precoUnitario,
+        produto: this.produtoSelecionado,
+        descricao: rawForm.descricao,
+        quantidade: rawForm.quantidade,
+        precoUnitario: rawForm.precoUnitario,
         status: 'ativo'
       };
 
@@ -70,6 +78,22 @@ export class EfetuarPedidoComponent implements OnInit {
         this.erro = '';
         this.pedidoForm.reset();
       });
+
+      this.produtoService
+        .recalcularEstoque(pedido.produto.id, pedido.produto.estoque - pedido.quantidade)
+        .subscribe((res) => {
+          this.produtoSelecionado.estoque = res.estoque;
+        });
+    } else {
+      Object.keys(this.pedidoForm.controls).forEach(field => {
+        const control = this.pedidoForm.get(field);
+        if (control?.errors) {
+          if (field === 'produtoId') this.erro = 'Selecione um produto válido.';
+          if (field === 'descricao') this.erro = 'Descrição é obrigatória.';
+          if (field === 'quantidade') this.erro = 'Quantidade deve ser maior que zero e não exceder o estoque.'
+          if (field === 'precoUnitario') this.erro = 'Preço unitário não corresponde ao preço do produto selecionado.';
+        }
+      })
     }
   }
 }

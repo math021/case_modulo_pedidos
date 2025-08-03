@@ -15,13 +15,13 @@
   <tbody>
     <tr *ngFor="let pedido of pedidos">
       <td>{{ pedido.id }}</td>
-      <td>{{ pedido.produtoId }}</td>
+      <td>{{ pedido.produto.nome }}</td>
       <td>{{ pedido.descricao }}</td>
       <td>{{ pedido.quantidade }}</td>
       <td>R$ {{ pedido.precoUnitario | number:'1.2-2' }}</td>
       <td>R$ {{ pedido.quantidade * pedido.precoUnitario | number:'1.2-2' }}</td>
       <td>
-        <button (click)="cancelarPedido(pedido.id)">Cancelar</button>
+        <button (click)="cancelarPedido(pedido)">Cancelar</button>
       </td>
     </tr>
   </tbody>
